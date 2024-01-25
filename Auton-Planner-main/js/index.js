@@ -115,15 +115,25 @@ const addAutonPoint = (x, y) => {
 }
 
 const getAutonPointFromGroup = (group) => {
-
 	for (object of group._objects) {
 		if (object instanceof fabric.Text) return autonMovePoints[Number(object.text)];
 	}
 }
 
-addAutonPoint(108, 12);
-addAutonPoint(25, 12);
-addAutonPoint(55, 52);
+addAutonPoint(108.52, 14.34);
+addAutonPoint(102.53, 51.79);
+addAutonPoint(98.23, 65.84);
+addAutonPoint(119.85, 71.22);
+addAutonPoint(110.23, 70.96);
+addAutonPoint(81.10, 72);
+addAutonPoint(120.11, 70.96);
+addAutonPoint(110.49, 70.96);
+addAutonPoint(81.10, 51.19);
+addAutonPoint(118.55, 71.22);
+addAutonPoint(110.23, 71.48);
+addAutonPoint(107.63, 14.52);
+addAutonPoint(73.82, 12.7);
+
 
 // Field & Robot
 
@@ -172,6 +182,7 @@ const updateCode = () => {
 			lookDir += 360;
 		}
 		const dist = Math.sqrt((currentYInches - nextYInches) * (currentYInches - nextYInches) + (currentXInches - nextXInches) * (currentXInches - nextXInches));
+		dist *= 2.54;
 
 		currentAngle -= lookDir;
 		codeString += `${Math.abs(lookDir) < 3 ? "//" : ''}this->turnToAngleRelative(${lookDir.toFixed(2)});\n`
@@ -276,6 +287,8 @@ $("#copy").click(function (e) {
 canvas.on("selection:created", main);
 canvas.on("selection:updated", main);
 canvas.on("object:moving", main);
+
+
 
 canvas.sendToBack(fieldInstance);
 canvas.renderAll();
